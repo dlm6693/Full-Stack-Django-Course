@@ -1,0 +1,20 @@
+body{
+  background: url(https://www.planetware.com/photos-large/USHI/hawaii-honolulu-beaches-oahu-kailua-beach.jpg);
+  background-repeat: repeat;
+}
+
+div{
+  background-color: blue;
+  border-color: orange;
+  border-width: 5px;
+  border-style: dashed;
+}
+
+p{
+  color: yellow;
+}
+
+span{
+  background: red;
+  color: black;
+}
