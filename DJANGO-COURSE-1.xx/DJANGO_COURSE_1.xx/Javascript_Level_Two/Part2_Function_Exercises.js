@@ -126,6 +126,19 @@ function luckySum(a, b, c){
 
 function caught_speeding(speed, is_birthday){
   //Code Goes Here
+  low_limit = 60
+  med_limit = 80
+  if (is_birthday){
+    low_limit += 5
+    med_limit +=5
+  }
+  if (speed <=low_limit){
+    return 0
+  }else if (low_limit < speed && speed <= med_limit){
+    return 1
+  } else {
+    return 2
+  }
 }
   
 
@@ -145,4 +158,10 @@ function caught_speeding(speed, is_birthday){
 
 function makeBricks(small, big, goal){
   //Code Goes Here
+  big_len = big*5
+  if ((small+big_len)>=goal){
+    return true
+  } else{
+    return false
+  }
 }
