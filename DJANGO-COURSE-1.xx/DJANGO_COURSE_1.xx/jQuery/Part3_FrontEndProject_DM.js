@@ -3,35 +3,58 @@ $.fn.extend({
         return this.text(this.text() == b ? a : b);
     }
 });
+var player1 = prompt("Player One: Enter Your Name, you will be Blue")
+var player2 = prompt("Player Two: Enter Your Name, you will be Red")
+var player1Text = player1 + ": it is your turn, please pick a column to drop your blue chip."
+var player2Text = player2 + ": it is your turn, please pick a column to drop your red chip."
 
-player1 = prompt("Player One: Enter Your Name, you will be Blue")
-player2 = prompt("Player Two: Enter Your Name, you will be Red")
-player1_text = player1 + ": it is your turn, please pick a column to drop your blue chip." 
-player2_text = player2 + ": it is your turn, please pick a column to drop your red chip."
-
-
-$('h3').text(player1_text)
-$('button').click(function(){
-    $('h3').toggleText(player2_text, player1_text)
+$('h3').text(player1Text)
+$('button').not('#reset').click(function () {
+    $('h3').toggleText(player2Text, player1Text)
 })
-
+// $(document).ready(newGame)
 $('td').click(move)
+$(document).on('click', '#reset', resetBoard)
 
+function resetBoard(){
+    $('button').not('#reset').css('background-color', 'rgb(240, 240, 240');
+    newGame();
+}
+
+function newGame(){
+    var player1 = prompt("Player One: Enter Your Name, you will be Blue")
+    var player2 = prompt("Player Two: Enter Your Name, you will be Red")
+    var player1Text = player1 + ": it is your turn, please pick a column to drop your blue chip."
+    var player2Text = player2 + ": it is your turn, please pick a column to drop your red chip."
+    $('.container').css('text-align', 'center');
+    $('h1').text("Welcome to Connect Four!");
+    $('h1').after("<h2>The object of this game is to connect four of your chips in a row!");
+    $('h2').after("<h3>" + player1Text + "</h3>")
+    $('#reset').remove()
+}
 
 function move(){
-    var col_idx = $(this).parent().children().index($(this));
-    var button = next_available(col_idx)
-    if ($('h3').text() === player2_text) {
+    var colIdx = $(this).parent().children().index($(this));
+    var button = nextAvailable(colIdx)
+    if ($('h3').text() === player2Text) {
         button.css('background-color', 'blue');
     } else {
         button.css('background-color', 'red');
     }
-    if (check_horizontal_win(button) || check_vertical_win(col_idx) || check_diagonal_win(button, col_idx)){
-         alert('yayyy!')
+    if (checkHorizontalWin(button) || checkVerticalWin(colIdx) || checkDiagonalWin(button, colIdx)){
+         $('h2').remove()
+         $('h3').remove()
+         if (button.css('background-color') === "rgb(255, 0, 0)"){
+             $('h1').text(player2 + " has won! Click the button below to play again.");
+         } else {
+             $('h1').text(player1 + " has won! Click the button below to play again.");
+         }
+        $('h1').after("<button type='button' id='reset' class='btn btn-primary btn-lg' align='center'>Play Again</button>");
+        $('#reset').wrap("<div class='col text-center'></div>")
      };
 }
 
-function next_available(col_idx){
+function nextAvailable(col_idx){
     var red_blue = ["rgb(255, 0, 0)", "rgb(0, 0, 255)"]
     for (i=-1; (i*-1) <= $('tr').length; i--){
         var button = $('tr').eq(i).children().eq(col_idx).children();
@@ -47,7 +70,7 @@ const unique = (value, index, self) => {
 }
 const allEqual = arr => arr.every(v => v === arr[0])
 
-function check_horizontal_win(button){
+function checkHorizontalWin(button){
     var row = button.parent().parent();
     var colors = [];
     var red = "rgb(255, 0, 0)"
@@ -65,7 +88,7 @@ function check_horizontal_win(button){
     return win
 }
 
-function check_vertical_win(col_idx){
+function checkVerticalWin(col_idx){
     var colors = []
     var red = "rgb(255, 0, 0)"
     var blue = "rgb(0, 0, 255)"
@@ -82,7 +105,7 @@ function check_vertical_win(col_idx){
     return win  
 }
 
-function check_diagonal_win(button, col_idx){
+function checkDiagonalWin(button, col_idx){
     var colors_1 = []
     var colors_2 = []
     var colors_3 = []
