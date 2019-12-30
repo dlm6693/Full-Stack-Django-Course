@@ -21,15 +21,43 @@
 # There are a few things you will have to discover for yourself for this game!
 # Here are some useful hints:
 
-# Try to figure out what this code is doing and how it might be useful to you
-import random
-digits = list(range(10))
-random.shuffle(digits)
-print(digits[:3])
+def create_code():
+    import random
+    digits = list(range(10))
+    random.shuffle(digits)
+    return digits[:3]
 
-# Another hint:
-guess = input("What is your guess? ")
-print(guess)
+
+def guess():
+    return list(input("What is your guess?"))
 
 # Think about how you will compare the input to the random number, what format
 # should they be in? Maybe some sort of sequence? Watch the Lecture video for more hints!
+
+def get_clues(code, guess):
+    ans = [str(d) for d in code]
+    if guess == ans:
+        return ["You got it right!"]
+    clues = []
+    guess_digits = [int(n) for n in guess]
+    close = 0
+    match = 0
+    for i,v in enumerate(guess_digits):
+        if code[i] == v:
+            clues.append("Match: You've guessed a correct number in the correct position")
+            match += 1
+        elif v in code and code[i] != v:
+            clues.append("Close: You've guessed a correct number but in the wrong position")
+            close +=1
+    if close + match == 0:
+        clues.append("Nope: You haven't guess any of the numbers correctly")
+    return clues
+
+code = create_code()
+clues = None
+
+while clues != ["You got it right!"]:
+    g = guess()
+    clues = get_clues(code, g)
+    for clue in clues:
+        print(clue)
