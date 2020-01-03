@@ -11,17 +11,16 @@
             {% if user_records %}
                 <ol>
                     {%for rec in user_records%}
-                        <li> User Info
+                        <li> User Info</li>
                             <ul>
                                 <li>First Name: {{ rec.first_name }}</li>
                                 <li>Last Name: {{ rec.last_name }}</li>
                                 <li>Email: {{ rec.email }}</li>
                             </ul>
-                        </tr>
                     {% endfor %}
                 </ol>
             {% else %}
-                <p>NO ACESS RECORDS FOUND!</p>
+                <p>NO ACCESS RECORDS FOUND!</p>
             {% endif %}
         </div>
     </body>

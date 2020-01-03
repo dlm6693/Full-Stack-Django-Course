@@ -4,8 +4,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ProTwo.settings')
 import django
 django.setup()
 
-## FAKE POP SCRIPT
-import random
 from AppTwo.models import User
 from faker import Faker
 
