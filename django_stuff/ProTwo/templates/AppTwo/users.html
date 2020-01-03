@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles%}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User Data></title>
+    </head>
+    <body>
+        <h1>Here are your users:</h1>
+        <div class="container">
+            {% if user_records %}
+                <ol>
+                    {%for rec in user_records%}
+                        <li> User Info
+                            <ul>
+                                <li>First Name: {{ rec.first_name }}</li>
+                                <li>Last Name: {{ rec.last_name }}</li>
+                                <li>Email: {{ rec.email }}</li>
+                            </ul>
+                        </tr>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p>NO ACESS RECORDS FOUND!</p>
+            {% endif %}
+        </div>
+    </body>
+</html>
