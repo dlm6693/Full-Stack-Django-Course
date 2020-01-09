@@ -8,6 +8,13 @@ body {
     }
 }
 
+/* .medium{
+    border-style:groove;
+    border-width:2px;
+    border-color: gray;
+
+} */
+
 .loader{
     filter:hue-rotate(0deg);
     color:linear-gradient(45deg,#0f8,#08f);
@@ -18,6 +25,24 @@ body {
     0% {
         transform: translate(0px,0px);
     }
+}
+
+.postdate{
+    text-align: center;
+}
+
+.posttitle{
+    font-size: 3em;
+    text-align: center;
+}
+
+.postcontent{
+    font-size:1.5em;
+}
+
+.btncomment{
+    position:absolute;
+    right:0px;
 }
 
 .techfont{
