@@ -1,13 +1,85 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
-        <link <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Blog</title>
+
+        {% comment %} Bootstrap {% endcomment %}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        {% comment %} Medium Style Editor {% endcomment %}
+        <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+        
+        {% comment %} Custom CSS {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+
+        {% comment %} JavaScript {% endcomment %}
+        <script src="{% static 'js/blog.js'%}"></script>
+        
+        {% comment %} Fonts {% endcomment %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display&display=swap" rel="stylesheet">
+
+    
     </head>
     <body>
-        {% block body_block %}
+        
+        {% comment %} NavBar {% endcomment %}
+         
+            <nav class="navbar navbar-expand-sm bg-light">
+                <div class="container">
+                    <ul class="navbar-nav">
+                        <li class="navbar-brand bigbrand"><a class="nav-link" href="{% url 'post_list' %}">My Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.github.com/">Github</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com">LinkedIn</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="welcome">Welcome: {{ user.username }}</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login'%}"><span class="glyphicon glyphicon-user">Login</span></a>
+                        </li> 
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            
 
+        {% comment %} Content Block {% endcomment %}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog_posts">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block body_block %}  
+            {% comment %} <div class="cursor"></div>
+            <div class="shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="content">
+                <h1>Hello there!</h1>
+            </div> {% endcomment %}
         {% endblock %}
     </body>
 </html>
