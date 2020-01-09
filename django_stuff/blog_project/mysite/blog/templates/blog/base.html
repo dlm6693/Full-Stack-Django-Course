@@ -7,7 +7,9 @@
 
         {% comment %} Bootstrap {% endcomment %}
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        {% comment %} icons {% endcomment %}
+        <script src="https://kit.fontawesome.com/f45e867490.js" crossorigin="anonymous"></script>
 
         {% comment %} Medium Style Editor {% endcomment %}
         <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
@@ -35,6 +37,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://www.github.com/">Github</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com">LinkedIn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'admin:index'%}">Admin</a></li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
@@ -45,14 +48,14 @@
                             <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="welcome">Welcome: {{ user.username }}</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login'%}"><span class="glyphicon glyphicon-user">Login</span></a>
+                            <a class="nav-link" href="{% url 'login'%}"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </li> 
                         {% endif %}
                     </ul>
@@ -61,26 +64,15 @@
             
 
         {% comment %} Content Block {% endcomment %}
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="blog_posts">
-                    {% block content %}
-                    {% endblock %}
+                <div class="content container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="blog_posts">
+                            {% block content %}
+                            {% endblock %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {% comment %} {% block content %}  
-            {% comment %} <div class="cursor"></div>
-            <div class="shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-            <div class="content">
-                <h1>Hello there!</h1>
-            </div> {% endcomment %}
-        {% comment %} {% endblock %} {% endcomment %}
     </body>
 </html>

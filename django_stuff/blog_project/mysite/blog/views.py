@@ -70,9 +70,15 @@ def add_comment_to_post(request, pk):
     return render(request, 'blog/comment_form.html', {'form': form})
 
 @login_required
-def comment_approved(request,pk):
+def comment_approve(request,pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
+    return redirect('post_detail', pk=comment.post.pk)
+
+@login_required
+def comment_unapprove(request,pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.unapprove()
     return redirect('post_detail', pk=comment.post.pk)
 
 @login_required
