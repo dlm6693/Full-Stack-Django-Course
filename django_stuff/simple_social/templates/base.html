@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Star Social</title>
+
+        {% comment %} bootstrap {% endcomment %}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+        {% comment %} font awesome (for icons) {% endcomment %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
+        
+        {% comment %} Montserrat Google Font {% endcomment %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        
+        {% comment %} CSS {% endcomment %}
+        <link rel="stylesheet" href="{% static 'simple_social/css/master.css' %}">
+   </head>
+    <body>
+        <nav class="navbar mynav" role="navigation" id="navbar">
+            <div class="container">
+                <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
+                
+                <ul class='navbar-nav ml-auto'>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="#">Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Create Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li> 
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="#">Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %">Sign Up</a></li>                   
+                    {% endif%}
+                
+                </ul>
+            
+            </div>
+        
+        </nav>
+        <div class="container mycontent">
+            
+            {% block content %}
+
+            {% endblock %}
+        
+        </div>
+        
+    </body>
+
+</html>
