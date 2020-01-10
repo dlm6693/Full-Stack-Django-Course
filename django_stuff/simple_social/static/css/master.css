@@ -1,0 +1,11 @@
+.user-header {
+    text-align: left;
+}
+
+.user-header h2 {
+    display: inline-block;
+}
+
+.user-header a {
+    float: right;
+}

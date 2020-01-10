@@ -3,11 +3,13 @@
 <div class="col-md-4">
     <div class="content">
         {% if user.is_authenticated %}
-        <h2>Welcome Back!
-            <a href="{% url 'post:for_user' username=user.username %}">
-                @{{user.username}}
-            </a>
-        </h2>
+        <div class="user-header">
+            <h2>Welcome Back!
+                <a href="{% url 'posts:for_user' username=user.username %}">
+                    @{{user.username}}
+                </a>
+            </h2>
+        </div>
         
         {% endif %}
         <h2>Groups</h2>
@@ -15,7 +17,7 @@
     </div>
     {% if user.is_authenticated %}
     <a href="{% url 'groups:create'%}" class="btn btn-md btn-fill btn-warning">
-        <i class="far fa-users"></i>
+        <i class="fas fa-users"></i>
         Create New Group!
     </a>
     
