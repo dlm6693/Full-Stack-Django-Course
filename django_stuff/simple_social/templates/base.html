@@ -16,10 +16,10 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
         
         {% comment %} CSS {% endcomment %}
-        <link rel="stylesheet" href="{% static 'css/master.css' %}">
+        <link rel="stylesheet" href="{% static 'simple_social/css/master.css' %}">
    </head>
     <body>
-        <nav class="navbar navbar-expand-sm bg-light mynav" role="navigation" id="navbar">
+        <nav class="navbar navbar-expand-sm bg-dark mynav" role="navigation" id="navbar">
             <div class="container">
                 <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
                 
@@ -47,7 +47,11 @@
             {% endblock %}
         
         </div>
-        
-    </body>
+    
 
+<canvas id="canvas"></canvas>
+
+    </body>
+    
+    <script type="text/javascript" src="{% static 'simple_social/js/master.js'%}"></script>
 </html>

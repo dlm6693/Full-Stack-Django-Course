@@ -1,26 +1,25 @@
-      <div class="media-content col-lg-12">
+    <div class="list-group-item my-groups-items">
+        <div class="list-group-item-text container-fluid media-content">
             <p>{{post.message_html|safe}}</p>
         </div>
-        <div class="media-footer">
-                <p class="media-heading text-left">
-                    <span class="username">
-                        <a href="{% url 'posts:for_user' username=post.user.username%}">@{{post.user.username}}</a>
-                    </span>
-                    <time class="time">
-                        <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">{{post.created_at}}</a>
-                    </time>
-                    {% if post.group %}
-                        <span class="group-name">in <a href="{% url 'groups:single' slug=post.group.slug%}">{{post.group.name}}</a></span>
-                    {% endif %}
-                    {% if user.is_authenticated and post.user == user and not hide_delete%}
-                    <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple">
-                        <i class="fas fa-comment-alt" aria-hidden="true"></i>
-                        <span class="text-danger icon-label">Delete Post</span>
-                    </a>
-                    {% endif %}
-                </p>
-
-        <div class="media-footer">
+        <div class="list-group-item-text container-fluid media-footer">
+            <div class="row">
+                <div class="username">
+                    <a href="{% url 'posts:for_user' username=post.user.username%}">@{{post.user.username}}</a>
+                </div>
+                <time class="time">
+                <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">{{post.created_at}}</a>
+                </time>
+                {% if post.group %}
+                    <span class="group-name">in <a href="{% url 'groups:single' slug=post.group.slug%}">{{post.group.name}}</a></span>
+                {% endif %}
+                {% if user.is_authenticated and post.user == user and not hide_delete%}
+                <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple">
+                    <i class="fas fa-comment-alt" aria-hidden="true"></i>
+                    <span class="text-danger icon-label">Delete Post</span>
+                </a>
+                {% endif %}
+            </div>
             
         </div>
-</div>
+    </div>

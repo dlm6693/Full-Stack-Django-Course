@@ -29,11 +29,11 @@
 
 {% block group_content %}
 <div class="col-md-8">
-    <div class="list-group">
+    <div class="list-group my-groups">
     {% for group in object_list %}
-    <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
+    <a class="list-group-item my-groups-items" href="{% url 'groups:single' slug=group.slug %}">
         <h3 class='title list-group-item-heading'>{{group.name}}</h3>
-        <div class="list-group-item-text containr-fluid">
+        <div class="list-group-item-text container-fluid">
             {{group.description_html|safe}}
             <div class="row">
                 <div class="col-md-4">

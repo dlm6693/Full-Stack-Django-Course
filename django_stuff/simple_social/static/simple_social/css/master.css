@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+}
+
+.my-groups-items{
+    background-color: #343a40 !important;
+}

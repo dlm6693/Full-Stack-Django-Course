@@ -39,6 +39,7 @@ class PostDetail(SelectRelatedMixin, generic.DetailView):
     
     def get_queryset(self):
         queryset = super().get_queryset()
+        import pdb; pdb.set_trace()
         return queryset.filter(user__username__iexact=self.kwags.get('username'))
     
 
